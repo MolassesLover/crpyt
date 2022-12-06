@@ -4,6 +4,8 @@
 
 import colorama
 from colorama import Fore
+import setuptools
+from setuptools import sandbox
 import subprocess
 
 # endregion
@@ -13,7 +15,7 @@ import subprocess
 
 
 def main():
-    pass
+    sandbox.run_setup('setup.py', ['clean', 'bdist_wheel'])
 
 
 # endregion
