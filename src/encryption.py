@@ -91,17 +91,16 @@ def main():
     arguments = argumentParser.parse_args()
 
     workingDirectory = os.getcwd()
-
-    print(workingDirectory)
-
-    if workingDirectory == os.environ["HOME"]:
-        print(
-            f":: {Fore.RED}Error{Fore.RESET}: Encrypting the home directory is disabled."
-        )
-        print(
-            f":: {Fore.BLUE}Help{Fore.RESET}: Use the {Fore.YELLOW}--force{Fore.RESET} flag to enable it."
-        )
-        sys.exit(1)
+    
+    if arguments.force is not True: 
+        if workingDirectory == os.environ["HOME"]:
+            print(
+                f":: {Fore.RED}Error{Fore.RESET}: Encrypting the home directory is disabled."
+            )
+            print(
+                f":: {Fore.BLUE}Help{Fore.RESET}: Use the {Fore.YELLOW}--force{Fore.RESET} flag to enable it."
+            )
+            sys.exit(1)
 
     if arguments.encrypt:
         for filepath in glob.iglob("*/**", recursive=True):
