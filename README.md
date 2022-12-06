@@ -26,6 +26,11 @@ Then the tree is **decrypted**, removing the `.gpg` files:
 # Decrypted 2 files.
 ```
 
+## License
+All files within this repository are licensed under the 
+[Apache v2.0 license](LICENSE-APACHE.md) or 
+[MIT license](LICENSE-MIT.md) at your choice. 
+
 ## Contributing
 Contributions are open, just make sure to sign your
 commits, otherwise, your changes will not be merged.
