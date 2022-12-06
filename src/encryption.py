@@ -90,11 +90,11 @@ def main():
     argumentParser.add_argument("--force", action="store_true")
     arguments = argumentParser.parse_args()
 
-    workingDirectory = os.path.dirname(os.path.realpath(__file__))
+    workingDirectory = os.getcwd()
 
     print(workingDirectory)
 
-    if workingDirectory == os.environ["HOMEPATH"]:
+    if workingDirectory == os.environ["HOME"]:
         print(
             f":: {Fore.RED}Error{Fore.RESET}: Encrypting the home directory is disabled."
         )
