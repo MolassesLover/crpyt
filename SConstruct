@@ -2,6 +2,8 @@
 
 # region Modules
 
+import colorama
+from colorama import Fore
 import subprocess
 
 # endregion
