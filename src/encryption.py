@@ -56,7 +56,7 @@ def decrypt(file, deleteOriginal: bool):
                 os.remove(file)
 
 
-def encrypt(file, deleteOriginal: bool, deleteDuplicates: bool = True):
+def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True):
     # Clean directories
     if os.path.isdir("__pycache__"):
         shutil.rmtree("__pycache__")
@@ -72,7 +72,7 @@ def encrypt(file, deleteOriginal: bool, deleteDuplicates: bool = True):
 
     if os.path.isfile(file):
         subprocess.run(
-            f"gpg --encrypt --sign --cipher-algo AES256 --compress-algo zlib -r Sussy {file}",
+            f"gpg --encrypt --sign --cipher-algo AES256 --compress-algo zlib -r {key} {file}",
             shell=True,
         )
         encryptionCount += int(1)
@@ -88,12 +88,27 @@ def main():
     argumentParser.add_argument("--decrypt", action="store_true")
     argumentParser.add_argument("--delete_original", action="store_true")
     argumentParser.add_argument("--force", action="store_true")
+    argumentParser.add_argument("--key", type=str)
+    argumentParser.add_argument("--path", type=str)
     arguments = argumentParser.parse_args()
 
     workingDirectory = os.getcwd()
-    
-    if arguments.force is not True: 
-        if workingDirectory == os.environ["HOME"]:
+
+    if not arguments.path:
+        targetDirectory: str = workingDirectory
+    else:
+        targetDirectory: str = arguments.path
+
+    print(
+        f":: Using the path '{Fore.YELLOW}{os.path.abspath(targetDirectory)}{Fore.RESET}'"
+    )
+
+    if not arguments.key:
+        print(f":: {Fore.RED}Error{Fore.RESET}: No GPG key provided.")
+        sys.exit(1)
+
+    if arguments.force is not True:
+        if os.path.abspath(targetDirectory) == os.environ["HOME"]:
             print(
                 f":: {Fore.RED}Error{Fore.RESET}: Encrypting the home directory is disabled."
             )
@@ -103,9 +118,13 @@ def main():
             sys.exit(1)
 
     if arguments.encrypt:
-        for filepath in glob.iglob("*/**", recursive=True):
+        for filepath in glob.iglob(f"{targetDirectory}/**/**", recursive=True):
             if os.path.isfile(filepath):
-                encrypt(filepath, deleteOriginal=arguments.delete_original)
+                encrypt(
+                    filepath,
+                    deleteOriginal=arguments.delete_original,
+                    key=arguments.key,
+                )
         if encryptionCount == 1:
             print(f":: {Style.DIM}Encrypted {encryptionCount} file.{Style.RESET_ALL}")
         else:
