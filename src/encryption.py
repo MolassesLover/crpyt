@@ -113,27 +113,27 @@ def main():
             )
             sys.exit(1)
 
-    if arguments.encrypt:
         for filepath in glob.iglob(f"{targetDirectory}/**/**", recursive=True):
             if os.path.isfile(filepath):
-                encrypt(
-                    filepath,
-                    deleteOriginal=arguments.delete_original,
-                    key=arguments.key,
-                )
-        if encryptionCount == 1:
-            print(f":: {Style.DIM}Encrypted {encryptionCount} file.{Style.RESET_ALL}")
-        else:
-            print(f":: {Style.DIM}Encrypted {encryptionCount} files.{Style.RESET_ALL}")
+                if arguments.encrypt:
+                    encrypt(
+                        filepath,
+                        deleteOriginal=arguments.delete_original,
+                        key=arguments.key,
+                    )
+                elif arguments.decrypt:
+                    decrypt(filepath, deleteOriginal=arguments.delete_original)
 
-    elif arguments.decrypt:
-        for filepath in glob.iglob(f"{targetDirectory}/**/**", recursive=True):
-            if os.path.isfile(filepath):
-                decrypt(filepath, deleteOriginal=arguments.delete_original)
-        if decryptionCount == 1:
-            print(f":: {Style.DIM}Decrypted {decryptionCount} file.{Style.RESET_ALL}")
-        else:
-            print(f":: {Style.DIM}Decrypted {decryptionCount} files.{Style.RESET_ALL}")
+        if arguments.encrypt:
+            if decryptionCount == 1:
+                print(f":: {Style.DIM}Decrypted {decryptionCount} file.{Style.RESET_ALL}")
+            else:
+                print(f":: {Style.DIM}Decrypted {decryptionCount} files.{Style.RESET_ALL}")
+        elif arguments.decrypt:
+            if encryptionCount == 1:
+                print(f":: {Style.DIM}Encrypted {encryptionCount} file.{Style.RESET_ALL}")
+            else:
+                print(f":: {Style.DIM}Encrypted {encryptionCount} files.{Style.RESET_ALL}")
 
 
 # endregion
