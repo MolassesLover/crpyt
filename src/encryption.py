@@ -46,10 +46,6 @@ def decrypt(file, deleteOriginal: bool):
 
 
 def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True):
-    # Clean directories
-    if os.path.isdir("__pycache__"):
-        shutil.rmtree("__pycache__")
-
     if file.endswith(".asc"):
         return
     elif file.endswith(".gpg"):
