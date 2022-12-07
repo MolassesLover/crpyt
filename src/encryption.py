@@ -1,11 +1,8 @@
 # region Modules
 
-import colorama
-from colorama import Fore, Style
-import glob
+from colorama import Fore
 import os
 import subprocess
-from pathlib import Path
 import shutil
 
 # endregion

@@ -3,15 +3,10 @@
 # region Modules
 
 import argparse
-import colorama
 from colorama import Fore, Style
-import crpyt
 from crpyt import *
 import glob
 import os
-import subprocess
-from pathlib import Path
-import shutil
 
 # endregion
 
