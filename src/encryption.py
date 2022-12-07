@@ -18,6 +18,7 @@ import sys
 
 decryptionCount: int = 0
 encryptionCount: int = 0
+encryptedFileExtensions: str = [".asc", ".gpg"]
 
 # endregion
 
@@ -25,9 +26,11 @@ encryptionCount: int = 0
 
 
 def decrypt(file, deleteOriginal: bool):
-    global decryptionCount
+    global encryptedFileExtensions
 
     def decrypt_subprocess(file, extension: str):
+        global decryptionCount
+
         print(f":: {Fore.BLUE}Decrypting {Fore.YELLOW}{file}{Fore.RESET}")
         subprocess.run(
             f"gpg --decrypt {file} > {file.removesuffix(extension)}", shell=True
@@ -36,20 +39,18 @@ def decrypt(file, deleteOriginal: bool):
         decryptionCount += int(1)
 
     def decrypt_delete(file):
+        global decryptionCount
+
         print(f":: {Fore.RED}Deleting {Fore.YELLOW}{file}{Fore.RESET}")
         os.remove(file)
 
-    if file.endswith(".gpg"):
-        if os.path.isfile(file):
-            decrypt_subprocess(file, ".gpg")
-    elif file.endswith(".asc"):
-        if os.path.isfile(file):
-            decrypt_subprocess(file, ".asc")
-
-    if deleteOriginal is True:
-        if file.endswith(".asc" or "gpg"):
+    for encryptedFileExtension in encryptedFileExtensions:
+        if file.endswith(encryptedFileExtension):
             if os.path.isfile(file):
-                decrypt_delete(file)
+                decrypt_subprocess(file, encryptedFileExtension)
+                if deleteOriginal is True:
+                    decrypt_delete(file)
+
 
 def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True):
     # Clean directories

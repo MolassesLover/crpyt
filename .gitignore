@@ -162,3 +162,7 @@ cython_debug/
 
 # SCons
 .sconsign.dblite
+
+# Encrypted files
+.gpg
+.asc
