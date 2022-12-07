@@ -7,6 +7,7 @@ from colorama import Fore, Style
 from crpyt import *
 import glob
 import os
+import sys
 
 # endregion
 

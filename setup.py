@@ -21,6 +21,11 @@ setup(
     url="https://github.com/MolassesLover/Crpyt",
     install_requires=["black", "colorama", "SCons"],
     license="MIT",
+    entry_points={
+        "console_scripts": [
+            "crpyt = crpyt.cli:main",
+        ]
+    },
 )
 
 if os.path.exists("crpyt"):

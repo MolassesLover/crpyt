@@ -28,6 +28,15 @@ Then the tree is **decrypted**, removing the `.gpg` files:
 # Decrypted 2 files.
 ```
 
+## Installation
+
+The [`src/cli.py`](src/cli.py) can be installed as the
+`crpyt` command using `pip`.
+
+```sh
+➜ pip install git+https://github.com/MolassesLover/Crpyt.git
+```
+
 ## License
 All files within this repository are licensed under the 
 [Apache v2.0 license](LICENSE-APACHE.md) or 
