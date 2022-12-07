@@ -1,6 +1,6 @@
 # region Modules
 
-from colorama import Fore
+from colorama import Fore, Style
 import os
 import subprocess
 import shutil
@@ -69,6 +69,24 @@ def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True)
     if deleteOriginal is True:
         if os.path.isfile(file):
             os.remove(file)
+
+
+def print_decryption_count():
+    global decryptionCount
+
+    if decryptionCount == 1:
+        print(f":: {Style.DIM}Decrypted {decryptionCount} file.{Style.RESET_ALL}")
+    else:
+        print(f":: {Style.DIM}Decrypted {decryptionCount} files.{Style.RESET_ALL}")
+
+
+def print_encryption_count():
+    global encryptionCount
+
+    if encryptionCount == 1:
+        print(f":: {Style.DIM}Encrypted {encryptionCount} file.{Style.RESET_ALL}")
+    else:
+        print(f":: {Style.DIM}Encrypted {encryptionCount} files.{Style.RESET_ALL}")
 
 
 # endregion

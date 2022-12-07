@@ -54,27 +54,14 @@ def main():
                         deleteOriginal=arguments.delete_original,
                         key=arguments.key,
                     )
+
                 elif arguments.decrypt:
                     decrypt(filepath, deleteOriginal=arguments.delete_original)
 
         if arguments.decrypt:
-            if decryptionCount == 1:
-                print(
-                    f":: {Style.DIM}Decrypted {decryptionCount} file.{Style.RESET_ALL}"
-                )
-            else:
-                print(
-                    f":: {Style.DIM}Decrypted {decryptionCount} files.{Style.RESET_ALL}"
-                )
+            print_decryption_count()
         elif arguments.encrypt:
-            if encryptionCount == 1:
-                print(
-                    f":: {Style.DIM}Encrypted {encryptionCount} file.{Style.RESET_ALL}"
-                )
-            else:
-                print(
-                    f":: {Style.DIM}Encrypted {encryptionCount} files.{Style.RESET_ALL}"
-                )
+            print_encryption_count()
 
 
 if __name__ == "__main__":
