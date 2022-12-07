@@ -127,7 +127,7 @@ def main():
             print(f":: {Style.DIM}Encrypted {encryptionCount} files.{Style.RESET_ALL}")
 
     elif arguments.decrypt:
-        for filepath in glob.iglob("*/**", recursive=True):
+        for filepath in glob.iglob(f"{targetDirectory}/**/**", recursive=True):
             if os.path.isfile(filepath):
                 decrypt(filepath, deleteOriginal=arguments.delete_original)
         if decryptionCount == 1:
