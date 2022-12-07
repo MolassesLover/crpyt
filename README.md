@@ -3,7 +3,7 @@
 
 [![Ko-Fi](https://img.shields.io/badge/donate-kofi-blue?style=for-the-badge&logo=ko-fi&color=E35B57&logoColor=FFFFFF&labelColor=232323)](https://ko-fi.com/molasses)
 [![Patreon](https://img.shields.io/badge/donate-patreon-blue?style=for-the-badge&logo=patreon&color=E35B57&logoColor=FFFFFF&labelColor=232323)](https://www.patreon.com/molasseslover)
-[![PyPi](https://img.shields.io/badge/install-pypi-blue?style=for-the-badge&logo=python&color=E35B57&logoColor=FFFFFF&labelColor=232323)](https://www.patreon.com/molasseslover)
+[![PyPi](https://img.shields.io/badge/install-pypi-blue?style=for-the-badge&logo=python&color=E35B57&logoColor=FFFFFF&labelColor=232323)](https://pypi.org/project/crpyt)
 
 A very simple Python script that calls Shell, allowing you
 to encrypt files within a tree using GPG. The script is
@@ -38,7 +38,7 @@ You can install it from [GitHub](https://github.com/MolassesLover/Crpyt):
 ```sh
 ➜ pip install git+https://github.com/MolassesLover/Crpyt.git
 ```
-Alternatively, from [PyPi](https://pypi.org/project/crpyt/0.0.1/):
+Alternatively, from [PyPi](https://pypi.org/project/crpyt):
 ```sh
 ➜ pip install crpyt
 ```
