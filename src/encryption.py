@@ -27,34 +27,29 @@ encryptionCount: int = 0
 def decrypt(file, deleteOriginal: bool):
     global decryptionCount
 
+    def decrypt_subprocess(file, extension: str):
+        print(f":: {Fore.BLUE}Decrypting {Fore.YELLOW}{file}{Fore.RESET}")
+        subprocess.run(
+            f"gpg --decrypt {file} > {file.removesuffix(extension)}", shell=True
+        )
+
+        decryptionCount += int(1)
+
+    def decrypt_delete(file):
+        print(f":: {Fore.RED}Deleting {Fore.YELLOW}{file}{Fore.RESET}")
+        os.remove(file)
+
     if file.endswith(".gpg"):
         if os.path.isfile(file):
-            print(f":: {Fore.BLUE}Decrypting {Fore.YELLOW}{file}{Fore.RESET}")
-            subprocess.run(
-                f"gpg --decrypt {file} > {file.removesuffix('.gpg')}", shell=True
-            )
-
-            decryptionCount += int(1)
-
+            decrypt_subprocess(file, ".gpg")
     elif file.endswith(".asc"):
         if os.path.isfile(file):
-            print(f":: {Fore.BLUE}Decrypting {Fore.YELLOW}{file}{Fore.RESET}")
-            subprocess.run(
-                f"gpg --decrypt {file} > {file.removesuffix('.asc')}", shell=True
-            )
-
-            decryptionCount += int(1)
+            decrypt_subprocess(file, ".asc")
 
     if deleteOriginal is True:
-        if file.endswith(".asc"):
+        if file.endswith(".asc" or "gpg"):
             if os.path.isfile(file):
-                print(f":: {Fore.RED}Deleting {Fore.YELLOW}{file}{Fore.RESET}")
-                os.remove(file)
-        elif file.endswith(".gpg"):
-            if os.path.isfile(file):
-                print(f":: {Fore.RED}Deleting {Fore.YELLOW}{file}{Fore.RESET}")
-                os.remove(file)
-
+                decrypt_delete(file)
 
 def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True):
     # Clean directories
