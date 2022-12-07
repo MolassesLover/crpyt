@@ -10,7 +10,7 @@ if os.path.exists("src"):
 
 setup(
     name="crpyt",
-    version="0.0.1",
+    version="0.0.2",
     packages=find_packages(),
     include_package_data=True,
     long_description=long_desc,
