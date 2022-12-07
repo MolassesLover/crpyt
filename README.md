@@ -12,7 +12,7 @@ hardcoded to encrypt files with 256 bit [AES](https://en.wikipedia.org/wiki/Adva
 
 In this example, the [`test/`](test/) directory is **encrypted**, leaving only the `.gpg` files:
 ```sh
-➜ python3 src/cli.py --path test --encrypt --delete_original --key $MY_GPG_KEY
+➜ python3 src/cli.py --path test --encrypt --delete_original --key #$MY_GPG_KEY
 # Encrypting pets/dogs/inu.txt
 # Encrypting pets/cats/neko.txt
 # Encrypted 2 files.
@@ -20,7 +20,7 @@ In this example, the [`test/`](test/) directory is **encrypted**, leaving only t
 
 Then the tree is **decrypted**, removing the `.gpg` files:
 ```sh
-➜ python3 src/cli.py --path test --decrypt --delete_original --key $MY_GPG_KEY
+➜ python3 src/cli.py --path test --decrypt --delete_original --key #$MY_GPG_KEY
 # Decrypting pets/dogs/inu.txt.gpg
 # Deleting pets/dogs/inu.txt.gpg
 # Decrypting pets/cats/neko.txt.gpg
