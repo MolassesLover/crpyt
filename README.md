@@ -31,7 +31,7 @@ Then the tree is **decrypted**, removing the `.gpg` files:
 
 ## Installation
 
-The [`src/cli.py`](https://github.com/MolassesLover/Crpyt/blob/master/src/cli.py) can be installed as the
+The [`src/cli.py`](https://github.com/MolassesLover/Crpyt/blob/master/src/cli.py) file can be installed as the
 `crpyt` command using `pip`.
 
 You can install it from [GitHub](https://github.com/MolassesLover/Crpyt):
