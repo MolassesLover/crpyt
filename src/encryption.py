@@ -26,7 +26,7 @@ def decrypt(file, deleteOriginal: bool):
 
         print(f":: {Fore.BLUE}Decrypting {Fore.YELLOW}{file}{Fore.RESET}")
         subprocess.run(
-            f"gpg --decrypt {file} > {file.removesuffix(extension)}", shell=True
+            f'gpg --decrypt "{file}" > "{file.removesuffix(extension)}"', shell=True
         )
 
         decryptionCount += int(1)
@@ -50,6 +50,8 @@ def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True)
         return
     elif file.endswith(".gpg"):
         return
+    elif file.endswith(".sha256"):
+        return
 
     global encryptionCount
 
@@ -57,7 +59,7 @@ def encrypt(file, deleteOriginal: bool, key: str, deleteDuplicates: bool = True)
 
     if os.path.isfile(file):
         subprocess.run(
-            f"gpg --encrypt --sign --cipher-algo AES256 --compress-algo zlib -r {key} {file}",
+            f'gpg --encrypt --sign --cipher-algo AES256 --compress-algo zlib -r {key} "{file}"',
             shell=True,
         )
         encryptionCount += int(1)
